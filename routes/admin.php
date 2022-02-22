@@ -30,7 +30,6 @@ Route::middleware(['auth'])->group(function () {
         /* User */
         Route::get('admin/user/index', ['as' => 'admin.user.index', 'uses' => 'Admin\UserController@index']);
         Route::get('admin/user/show/{id}', ['as' => 'admin.user.show', 'uses' => 'Admin\UserController@show'])->withoutMiddleware(Administrador::class);
-
         Route::get('admin/user/create', ['as' => 'admin.user.create', 'uses' => 'Admin\UserController@create']);
         Route::get('admin/user/edit/{id}', ['as' => 'admin.user.edit', 'uses' => 'Admin\UserController@edit'])->withoutMiddleware(Administrador::class);;
         Route::put('admin/user/update/{id}', ['as' => 'admin.user.update', 'uses' => 'Admin\UserController@update'])->withoutMiddleware(Administrador::class);;
@@ -39,14 +38,14 @@ Route::middleware(['auth'])->group(function () {
         /* end user */
     });
 
-/**viaturas */
+    /**viaturas */
     Route::get('admin/viaturas/index', ['as' => 'admin.viaturas.index', 'uses' => 'Admin\ViaturaController@index']);
     Route::get('admin/viaturas/show/{id}', ['as' => 'admin.viaturas.show', 'uses' => 'Admin\ViaturaController@show'])->withoutMiddleware(Administrador::class);
     Route::get('admin/viaturas/create', ['as' => 'admin.viaturas.create', 'uses' => 'Admin\ViaturaController@create']);
     Route::get('admin/viaturas/edit/{id}', ['as' => 'admin.viaturas.edit', 'uses' => 'Admin\ViaturaController@edit'])->withoutMiddleware(Administrador::class);;
     Route::put('admin/viaturas/update/{id}', ['as' => 'admin.viaturas.update', 'uses' => 'Admin\ViaturaController@update'])->withoutMiddleware(Administrador::class);;
     Route::post('admin/viaturas/store', ['as' => 'admin.viaturas.store', 'uses' => 'Admin\ViaturaController@store']);
-    Route::get('admin/user/delete/{id}', ['as' => 'admin.user.delete', 'uses' => 'Admin\UserController@destroy']);
+    Route::get('admin/viaturas/delete/{id}', ['as' => 'admin.viaturas.delete', 'uses' => 'Admin\ViaturaController@destroy']);
     /**fim viaturas */
 
     /**atribuçoes de viatturas */
@@ -59,6 +58,45 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/atribuices-viaturas/store', ['as' => 'admin.atribuicoes.store', 'uses' => 'Admin\AtribuicoesControlle@store']);
     Route::get('admin/atribuices-viaturas/delete/{id}', ['as' => 'admin.atribuicoes.delete', 'uses' => 'Admin\AtribuicoesControlle@destroy']);
     /**fim atribucoes */
+
+
+    /**gastos-combustivel */
+
+    Route::get('admin/gastos-combustivel/index', ['as' => 'admin.gastosCombustivel.index', 'uses' => 'Admin\GastosCombustivelController@index']);
+    Route::get('admin/gastos-combustivel/show/{id}', ['as' => 'admin.gastosCombustivel.show', 'uses' => 'Admin\GastosCombustivelController@show'])->withoutMiddleware(Administrador::class);
+    Route::get('admin/gastos-combustivel/create', ['as' => 'admin.gastosCombustivel.create', 'uses' => 'Admin\GastosCombustivelController@create']);
+    Route::get('admin/gastos-combustivel/edit/{id}', ['as' => 'admin.gastosCombustivel.edit', 'uses' => 'Admin\GastosCombustivelController@edit'])->withoutMiddleware(Administrador::class);;
+    Route::put('admin/gastos-combustivel/update/{id}', ['as' => 'admin.gastosCombustivel.update', 'uses' => 'Admin\GastosCombustivelController@update'])->withoutMiddleware(Administrador::class);;
+    Route::post('admin/gastos-combustivel/store', ['as' => 'admin.gastosCombustivel.store', 'uses' => 'Admin\GastosCombustivelController@store']);
+    Route::get('admin/gastos-combustivel/delete/{id}', ['as' => 'admin.gastosCombustivel.delete', 'uses' => 'Admin\GastosCombustivelController@destroy']);
+    /**gastos-combustivel */
+
+
+    /**solicitacoes */
+    Route::get('admin/solicitacoes-viaturas/sw/{id}', ['as' => 'admin.solicitacoes.cadastrar', 'uses' => 'Admin\SolicitacoesController@solicitar']);
+    Route::get('admin/localizadar-viaturas', ['as' => 'admin.solicitacoes.buscar', 'uses' => 'Admin\SolicitacoesController@index']);
+    Route::get('admin//solicitacoes-viaturas/listar', ['as' => 'admin.solicitacoes.listar', 'uses' => 'Admin\SolicitacoesController@index']);
+    Route::get('admin/solicitacoes-viaturas/index', ['as' => 'admin.solicitacoes.index', 'uses' => 'Admin\SolicitacoesController@index']);
+    Route::get('admin/solicitacoes-viaturas/show/{id}', ['as' => 'admin.solicitacoes.show', 'uses' => 'Admin\SolicitacoesController@show'])->withoutMiddleware(Administrador::class);
+    Route::get('admin/solicitacoes-viaturas/create', ['as' => 'admin.solicitacoes.create', 'uses' => 'Admin\SolicitacoesController@create']);
+    Route::get('admin/solicitacoes-viaturas/edit/{id}', ['as' => 'admin.solicitacoes.edit', 'uses' => 'Admin\SolicitacoesController@edit'])->withoutMiddleware(Administrador::class);;
+    Route::put('admin/solicitacoes-viaturas/update/{id}', ['as' => 'admin.solicitacoes.update', 'uses' => 'Admin\SolicitacoesController@update'])->withoutMiddleware(Administrador::class);;
+    Route::post('admin/solicitacoes-viaturas/store', ['as' => 'admin.solicitacoes.store', 'uses' => 'Admin\SolicitacoesController@buscar']);
+    Route::post('admin/solicitacoes-viaturas/cadastrar/solicitacao', ['as' => 'admin.cadastrar.store', 'uses' => 'Admin\SolicitacoesController@cadastrar']);
+    Route::get('admin/solicitacoes-viaturas/delete/{id}', ['as' => 'admin.solicitacoes.delete', 'uses' => 'Admin\SolicitacoesController@destroy']);
+    /**solicitacoes */
+
+     /**multas de viaturas */
+
+     Route::get('admin/multas-viaturas/index', ['as' => 'admin.MultaViaturas.index', 'uses' => 'Admin\MultaViaturasController@index']);
+     Route::get('admin/multas-viatura/show/{id}', ['as' => 'admin.MultaViaturas.show', 'uses' => 'Admin\MultaViaturasController@show'])->withoutMiddleware(Administrador::class);
+     Route::get('admin/multas-viatura/create', ['as' => 'admin.MultaViaturas.create', 'uses' => 'Admin\MultaViaturasController@create']);
+     Route::get('admin/multas-viatura/edit/{id}', ['as' => 'admin.MultaViaturas.edit', 'uses' => 'Admin\MultaViaturasController@edit'])->withoutMiddleware(Administrador::class);;
+     Route::put('admin/multas-viatura/update/{id}', ['as' => 'admin.MultaViaturas.update', 'uses' => 'Admin\MultaViaturasController@update'])->withoutMiddleware(Administrador::class);;
+     Route::post('admin/multas-viatura/store', ['as' => 'admin.MultaViaturas.store', 'uses' => 'Admin\MultaViaturasController@store']);
+     Route::get('admin/multas-viatura/delete/{id}', ['as' => 'admin.MultaViaturas.delete', 'uses' => 'Admin\MultaViaturasController@destroy']);
+     /**multas de viaturas */
+
     Route::middleware([Editor::class])->group(function () {
         /* gallery */
         Route::get('admin/gallery/index', ['as' => 'admin.gallery.index', 'uses' => 'Admin\GalleryController@list']);
@@ -91,26 +129,26 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/legislação/delete/{id}', ['as' => 'admin.legislation.delete', 'uses' => 'Admin\LegislationController@destroy']);
         /* end legislação */
 
-          /* announcement */
-          Route::get('admin/comunicados/index', ['as' => 'admin.announcement.index', 'uses' => 'Admin\AnnouncementController@index']);
-          Route::get('admin/comunicados/show/{id}', ['as' => 'admin.announcement.show', 'uses' => 'Admin\AnnouncementController@show']);
-          Route::get('admin/comunicados/create', ['as' => 'admin.announcement.create', 'uses' => 'Admin\AnnouncementController@create']);
-          Route::post('admin/comunicados/store', ['as' => 'admin.announcement.store', 'uses' => 'Admin\AnnouncementController@store']);
-          Route::get('admin/comunicados/edit/{id}', ['as' => 'admin.announcement.edit', 'uses' => 'Admin\AnnouncementController@edit']);
-          Route::put('admin/comunicados/update/{id}', ['as' => 'admin.announcement.update', 'uses' => 'Admin\AnnouncementController@update']);
-          Route::get('admin/comunicados/delete/{id}', ['as' => 'admin.announcement.delete', 'uses' => 'Admin\AnnouncementController@destroy']);
-          /* end announcement */
+        /* announcement */
+        Route::get('admin/comunicados/index', ['as' => 'admin.announcement.index', 'uses' => 'Admin\AnnouncementController@index']);
+        Route::get('admin/comunicados/show/{id}', ['as' => 'admin.announcement.show', 'uses' => 'Admin\AnnouncementController@show']);
+        Route::get('admin/comunicados/create', ['as' => 'admin.announcement.create', 'uses' => 'Admin\AnnouncementController@create']);
+        Route::post('admin/comunicados/store', ['as' => 'admin.announcement.store', 'uses' => 'Admin\AnnouncementController@store']);
+        Route::get('admin/comunicados/edit/{id}', ['as' => 'admin.announcement.edit', 'uses' => 'Admin\AnnouncementController@edit']);
+        Route::put('admin/comunicados/update/{id}', ['as' => 'admin.announcement.update', 'uses' => 'Admin\AnnouncementController@update']);
+        Route::get('admin/comunicados/delete/{id}', ['as' => 'admin.announcement.delete', 'uses' => 'Admin\AnnouncementController@destroy']);
+        /* end announcement */
 
 
-              /* announcement */
-              Route::get('admin/publicacoes/index', ['as' => 'admin.publication.index', 'uses' => 'Admin\PublicationController@index']);
-              Route::get('admin/publicacoes/show/{id}', ['as' => 'admin.publication.show', 'uses' => 'Admin\PublicationController@show']);
-              Route::get('admin/publicacoes/create', ['as' => 'admin.publication.create', 'uses' => 'Admin\PublicationController@create']);
-              Route::post('admin/publicacoes/store', ['as' => 'admin.publication.store', 'uses' => 'Admin\PublicationController@store']);
-              Route::get('admin/publicacoes/edit/{id}', ['as' => 'admin.publication.edit', 'uses' => 'Admin\PublicationController@edit']);
-              Route::put('admin/publicacoes/update/{id}', ['as' => 'admin.publication.update', 'uses' => 'Admin\PublicationController@update']);
-              Route::get('admin/publicacoes/delete/{id}', ['as' => 'admin.publication.delete', 'uses' => 'Admin\PublicationController@destroy']);
-              /* end announcement */
+        /* announcement */
+        Route::get('admin/publicacoes/index', ['as' => 'admin.publication.index', 'uses' => 'Admin\PublicationController@index']);
+        Route::get('admin/publicacoes/show/{id}', ['as' => 'admin.publication.show', 'uses' => 'Admin\PublicationController@show']);
+        Route::get('admin/publicacoes/create', ['as' => 'admin.publication.create', 'uses' => 'Admin\PublicationController@create']);
+        Route::post('admin/publicacoes/store', ['as' => 'admin.publication.store', 'uses' => 'Admin\PublicationController@store']);
+        Route::get('admin/publicacoes/edit/{id}', ['as' => 'admin.publication.edit', 'uses' => 'Admin\PublicationController@edit']);
+        Route::put('admin/publicacoes/update/{id}', ['as' => 'admin.publication.update', 'uses' => 'Admin\PublicationController@update']);
+        Route::get('admin/publicacoes/delete/{id}', ['as' => 'admin.publication.delete', 'uses' => 'Admin\PublicationController@destroy']);
+        /* end announcement */
 
 
 
@@ -186,8 +224,5 @@ Route::middleware(['auth'])->group(function () {
         /* reclamation */
         Route::get('admin/denucias/index', ['as' => 'admin.complaint.index', 'uses' => 'Admin\ComplaintController@index']);
         Route::get('admin/denucias/show/{id}', ['as' => 'admin.complaint.show', 'uses' => 'Admin\ComplaintController@show']);
-
-
-
     });
 });

@@ -11,7 +11,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-body">
-
+            <center><h3>Lista de Atribuições de Viaturas</h3></center>
                <table class="table table-striped table-vcenter mb-0">
                 <thead class="thead-dark">
                     <tr class="text-center">
@@ -37,24 +37,12 @@
                             <td>{{ $item->created_at }} </td>
 
 
+
                             <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-dark btn-sm dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="fa fa-clone fa-sm" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a href='{{ url("admin/user/show/{$item->id}") }}'
-                                            class="dropdown-item">Detalhes</a>
-                                        <a href='{{ url("admin/user/edit/{$item->id}") }}'
-                                            class="dropdown-item">Editar</a>
-                                        <a href='{{ url("admin/user/delete/{$item->id}") }}'
-                                            class="dropdown-item">Eliminar</a>
+                                <a data-toggle="tooltip" title="Editar"  href="{{ url("admin/viaturas/edit/{$item->id}") }}">Editar   <i class="bx bx-edit-alt"></i></a>
 
+                                <a data-toggle="tooltip" title="Eliminar" href="{{ url("admin/viaturas/delete/{$item->id}") }}"> Apagar  <i class="mdi mdi-delete"></i></a>
 
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                     @endforeach

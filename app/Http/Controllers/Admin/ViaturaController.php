@@ -48,12 +48,13 @@ return view('admin.viaturas.list.index',$resonse);
 
         ]);
 
+        $file = $request->file('imagem_viatura')->store('Viaturas');
         $Viatura = Viatura::create([
             'matricula' => $request->matricula,
             'modelo'=> $request->modelo,
             'quantidade'=> $request->quantidade,
             'descricao'=> $request->descricao,
-            'imagem_viatura'=> $request->imagem_viatura
+            'imagem_viatura'=> $file
         ]);
         return redirect("admin/viaturas/index")->with('create', '1');
 
@@ -78,7 +79,10 @@ return view('admin.viaturas.list.index',$resonse);
      */
     public function edit($id)
     {
-        //
+
+        $response['viatura']=Viatura::find($id);
+
+        return view('admin.viaturas.edit.index', $response);
     }
 
     /**
@@ -90,7 +94,33 @@ return view('admin.viaturas.list.index',$resonse);
      */
     public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            'matricula' => 'required|min:5|max:255',
+            'modelo' => 'required|',
+            'quantidade' => 'required| numeric|min:2',
+            'descricao' => 'required|',
+            'imagem_viatura'=> 'mimes:jpg,png,gif,SVG,EPS',
+
+        ]);
+
+        if ($file = $request->file('imagem_viatura')) {
+            $file = $file->store('Viaturas');
+        } else {
+            $file = Viatura::find($id)->imagem_viatura;
+        }
+
+        Viatura::find($id)->update([
+            'matricula' => $request->matricula,
+            'modelo'=> $request->modelo,
+            'quantidade'=> $request->quantidade,
+            'descricao'=> $request->descricao,
+            'imagem_viatura'=> $file
+
+        ]);
+
+
+
+        return redirect()->route('admin.viaturas.index')->with('edit', '1');
     }
 
     /**
@@ -101,6 +131,7 @@ return view('admin.viaturas.list.index',$resonse);
      */
     public function destroy($id)
     {
-        //
+        Viatura::find($id)->delete();
+        return redirect('admin/viaturas/index')->with('destroy', '1');
     }
 }

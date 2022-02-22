@@ -30,8 +30,11 @@
                     @endif
 
 
-                    <form method="POST" action="{{ route('admin.viaturas.store') }}" enctype="multipart/form-data">
+
+                        <form class="card-body" method="POST" action="{{ route('admin.viaturas.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
+
                         @include("forms._formviaturas.index")
 
                             <div>

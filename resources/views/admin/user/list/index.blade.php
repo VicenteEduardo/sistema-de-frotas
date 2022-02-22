@@ -11,7 +11,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-body">
-
+            <center><h3>Lista Utilizadores </h3></center>
                <table class="table table-striped table-vcenter mb-0">
                 <thead class="thead-dark">
                     <tr class="text-center">

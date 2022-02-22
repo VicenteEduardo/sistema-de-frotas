@@ -19,7 +19,7 @@ $table->string('matricula',255);
 $table->string('modelo',255);
 
 $table->string('quantidade',255);
-$table->string('descricao');
+$table->longText('descricao');
 $table->string('imagem_viatura',255);
             $table->softDeletes();
             $table->timestamps();
